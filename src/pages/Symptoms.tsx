@@ -16,7 +16,7 @@ const Symptoms = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -27,7 +27,7 @@ const Symptoms = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Buscar por Sintomas</h1>
+            <h1 className="text-xl font-bold text-blue-600">Buscar por Sintomas</h1>
             <p className="text-gray-600 text-sm">Selecione seu sintoma</p>
           </div>
         </div>

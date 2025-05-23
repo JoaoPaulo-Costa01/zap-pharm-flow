@@ -15,7 +15,7 @@ const SymptomMedicines = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -26,7 +26,7 @@ const SymptomMedicines = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Remédios para seu sintoma</h1>
+            <h1 className="text-xl font-bold text-blue-600">Remédios para seu sintoma</h1>
             <p className="text-gray-600 text-sm">Produtos recomendados</p>
           </div>
         </div>
@@ -44,7 +44,7 @@ const SymptomMedicines = () => {
                 <span className="text-4xl">{medicine.image}</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">{medicine.name}</h3>
-              <p className="text-green-600 font-bold text-lg">{medicine.price}</p>
+              <p className="text-blue-600 font-bold text-lg">{medicine.price}</p>
             </div>
           ))}
         </div>

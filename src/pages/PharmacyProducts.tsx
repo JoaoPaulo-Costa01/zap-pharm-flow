@@ -17,7 +17,7 @@ const PharmacyProducts = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -28,7 +28,7 @@ const PharmacyProducts = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Farmácia {id}</h1>
+            <h1 className="text-xl font-bold text-blue-600">Farmácia {id}</h1>
             <p className="text-gray-600 text-sm">Produtos disponíveis</p>
           </div>
         </div>
@@ -46,7 +46,7 @@ const PharmacyProducts = () => {
                 <span className="text-4xl">{product.image}</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-              <p className="text-green-600 font-bold text-lg">{product.price}</p>
+              <p className="text-blue-600 font-bold text-lg">{product.price}</p>
             </div>
           ))}
         </div>

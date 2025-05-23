@@ -18,11 +18,16 @@ const Cart = () => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   const handleConfirmOrder = () => {
+    if (!address.trim() || !paymentMethod) {
+      alert('Por favor, preencha o endereço e selecione um método de pagamento.');
+      return;
+    }
+    console.log('Pedido confirmado:', { cartItems, address, paymentMethod, total });
     navigate('/tracking');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -33,7 +38,7 @@ const Cart = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Carrinho de Compras</h1>
+            <h1 className="text-xl font-bold text-blue-600">Carrinho de Compras</h1>
           </div>
         </div>
       </header>
@@ -55,7 +60,7 @@ const Cart = () => {
             <div className="mt-4 pt-4 border-t">
               <div className="flex justify-between items-center text-lg font-bold">
                 <span>Total:</span>
-                <span className="text-green-600">R$ {total.toFixed(2)}</span>
+                <span className="text-blue-600">R$ {total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -72,6 +77,7 @@ const Cart = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Rua, número, bairro..."
+                  required
                 />
               </div>
 
@@ -82,6 +88,7 @@ const Cart = () => {
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-full p-2 border border-gray-300 rounded-md"
+                  required
                 >
                   <option value="">Selecione</option>
                   <option value="credit">Cartão de Crédito</option>
@@ -93,7 +100,7 @@ const Cart = () => {
 
               <Button 
                 onClick={handleConfirmOrder}
-                className="w-full bg-green-600 hover:bg-green-700 mt-6"
+                className="w-full bg-blue-600 hover:bg-blue-700 mt-6"
                 size="lg"
               >
                 Confirmar Pedido

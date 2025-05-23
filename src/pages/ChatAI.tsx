@@ -17,7 +17,7 @@ const ChatAI = () => {
     const newMessages = [
       ...messages,
       { id: messages.length + 1, text: currentMessage, sender: 'user' },
-      { id: messages.length + 2, text: "Baseado nos sintomas que você descreveu, posso sugerir alguns produtos. Lembre-se de sempre consultar um médico para sintomas persistentes.", sender: 'ai' }
+      { id: messages.length + 2, text: "Baseado nos sintomas que você descreveu, posso sugerir Dipirona 500mg ou Paracetamol 750mg. Lembrando que a IA não escolhe o remédio, consulte um médico.", sender: 'ai' }
     ];
 
     setMessages(newMessages);
@@ -25,7 +25,7 @@ const ChatAI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -36,7 +36,7 @@ const ChatAI = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Chat com IA</h1>
+            <h1 className="text-xl font-bold text-blue-600">Chat com IA</h1>
             <p className="text-gray-600 text-sm">Assistente farmacêutica virtual</p>
           </div>
         </div>
@@ -53,7 +53,7 @@ const ChatAI = () => {
                 <div 
                   className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                     message.sender === 'user' 
-                      ? 'bg-green-600 text-white' 
+                      ? 'bg-blue-600 text-white' 
                       : 'bg-gray-200 text-gray-800'
                   }`}
                 >
@@ -70,7 +70,7 @@ const ChatAI = () => {
               placeholder="Descreva seus sintomas..."
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <Button onClick={handleSendMessage} className="bg-green-600 hover:bg-green-700">
+            <Button onClick={handleSendMessage} className="bg-blue-600 hover:bg-blue-700">
               Enviar
             </Button>
           </div>

@@ -7,10 +7,10 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold text-green-600">Zap Pharm</h1>
+          <h1 className="text-2xl font-bold text-blue-600">Zap Pharm</h1>
           <p className="text-gray-600">Olá! O que você precisa hoje?</p>
         </div>
       </header>
@@ -58,7 +58,7 @@ const Dashboard = () => {
               <div key={item} className="border rounded-lg p-4">
                 <div className="w-full h-24 bg-gray-200 rounded mb-2"></div>
                 <h4 className="font-medium">Remédio {item}</h4>
-                <p className="text-green-600 font-bold">R$ 29,90</p>
+                <p className="text-blue-600 font-bold">R$ 29,90</p>
               </div>
             ))}
           </div>

@@ -16,11 +16,12 @@ const MedicineDetails = () => {
   };
 
   const handleAddToCart = () => {
+    console.log('Remédio adicionado ao carrinho:', medicine);
     navigate('/cart-symptom');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -31,7 +32,7 @@ const MedicineDetails = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Detalhes do Remédio</h1>
+            <h1 className="text-xl font-bold text-blue-600">Detalhes do Remédio</h1>
           </div>
         </div>
       </header>
@@ -47,7 +48,7 @@ const MedicineDetails = () => {
             
             <div className="space-y-4">
               <h1 className="text-2xl font-bold text-gray-800">{medicine.name}</h1>
-              <p className="text-3xl font-bold text-green-600">{medicine.price}</p>
+              <p className="text-3xl font-bold text-blue-600">{medicine.price}</p>
               <p className="text-gray-600 leading-relaxed">{medicine.description}</p>
               
               <div className="space-y-2">
@@ -61,7 +62,7 @@ const MedicineDetails = () => {
               
               <Button 
                 onClick={handleAddToCart}
-                className="w-full bg-green-600 hover:bg-green-700 mt-6"
+                className="w-full bg-blue-600 hover:bg-blue-700 mt-6"
                 size="lg"
               >
                 Adicionar ao Carrinho
