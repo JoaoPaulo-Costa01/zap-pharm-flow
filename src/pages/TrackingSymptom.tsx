@@ -7,7 +7,7 @@ const TrackingSymptom = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
@@ -18,7 +18,7 @@ const TrackingSymptom = () => {
             ← Início
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-green-600">Rastreamento do Pedido</h1>
+            <h1 className="text-xl font-bold text-blue-600">Rastreamento do Pedido</h1>
           </div>
         </div>
       </header>
@@ -26,7 +26,7 @@ const TrackingSymptom = () => {
       <main className="max-w-4xl mx-auto p-4">
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-8">
-            <div className="w-32 h-32 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
+            <div className="w-32 h-32 bg-blue-100 rounded-full mx-auto flex items-center justify-center mb-4">
               <span className="text-4xl">🚚</span>
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Seu pedido está indo até você!</h2>
@@ -42,17 +42,17 @@ const TrackingSymptom = () => {
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div className="flex items-center">
-                <span className="text-green-600 mr-3">✅</span>
+                <span className="text-blue-600 mr-3">✅</span>
                 <span>Pedido confirmado</span>
               </div>
               <span className="text-sm text-gray-500">14:15</span>
             </div>
 
-            <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <div className="flex items-center">
-                <span className="text-green-600 mr-3">✅</span>
+                <span className="text-blue-600 mr-3">✅</span>
                 <span>Saiu para entrega</span>
               </div>
               <span className="text-sm text-gray-500">14:35</span>
