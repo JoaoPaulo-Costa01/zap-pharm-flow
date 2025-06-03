@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,15 +22,6 @@ const CreateAccount = () => {
     console.log('Google login initiated');
     // In a real app, this would redirect to Google OAuth
     navigate('/personal-data');
-  };
-
-  const handlePasswordReset = () => {
-    // Simulate password reset
-    console.log('Password reset requested for:', resetEmail);
-    // In a real app, this would send a password reset email
-    alert(`Link de recuperação enviado para ${resetEmail}`);
-    setIsResetDialogOpen(false);
-    setResetEmail('');
   };
 
   return (
@@ -81,37 +71,12 @@ const CreateAccount = () => {
           </Button>
 
           <div className="text-center">
-            <Dialog open={isResetDialogOpen} onOpenChange={setIsResetDialogOpen}>
-              <DialogTrigger asChild>
-                <button className="text-gray-500 hover:underline text-sm">
-                  Esqueceu a senha?
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Recuperar Senha</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="reset-email">Email</Label>
-                    <Input
-                      id="reset-email"
-                      type="email"
-                      value={resetEmail}
-                      onChange={(e) => setResetEmail(e.target.value)}
-                      placeholder="Digite seu email"
-                    />
-                  </div>
-                  <Button 
-                    onClick={handlePasswordReset} 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
-                    disabled={!resetEmail}
-                  >
-                    Enviar Link de Recuperação
-                  </Button>
-                </div>
-              </DialogContent>
-            </Dialog>
+            <button 
+              onClick={() => navigate('/forgot-password')}
+              className="text-gray-500 hover:underline text-sm"
+            >
+              Esqueceu a senha?
+            </button>
           </div>
         </div>
       </div>
