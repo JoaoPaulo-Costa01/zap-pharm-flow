@@ -15,6 +15,13 @@ const CreateAccount = () => {
     navigate('/personal-data');
   };
 
+  const handleGoogleLogin = () => {
+    // Simulate Google login
+    console.log('Google login initiated');
+    // In a real app, this would redirect to Google OAuth
+    navigate('/personal-data');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
@@ -53,18 +60,15 @@ const CreateAccount = () => {
             Continue
           </Button>
 
-          <Button variant="outline" className="w-full">
+          <Button 
+            variant="outline" 
+            className="w-full"
+            onClick={handleGoogleLogin}
+          >
             Entrar com Google
           </Button>
 
-          <div className="text-center space-y-2">
-            <button 
-              onClick={() => navigate('/login')}
-              className="text-blue-600 hover:underline text-sm"
-            >
-              Já tem conta? Faça login
-            </button>
-            <br />
+          <div className="text-center">
             <button className="text-gray-500 hover:underline text-sm">
               Esqueceu a senha?
             </button>
