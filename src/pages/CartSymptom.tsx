@@ -1,44 +1,37 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { ArrowLeft, CreditCard } from 'lucide-react';
 
 const CartSymptom = () => {
   const navigate = useNavigate();
+  const [paymentMethod, setPaymentMethod] = useState('card');
   const [address, setAddress] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [cardHolder, setCardHolder] = useState('');
 
-  // Em uma aplicação real, estes itens viriam do contexto/estado global
-  const cartItems = [
-    { id: 1, name: 'Dipirona 500mg', price: 8.50, quantity: 1 }
-  ];
-
-  const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-  const handleConfirmOrder = () => {
-    if (!address.trim() || !paymentMethod) {
-      alert('Por favor, preencha o endereço e selecione um método de pagamento.');
-      return;
+  // Carregar dados salvos
+  useEffect(() => {
+    const savedData = localStorage.getItem('zapPharmUserData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+      setAddress(data.address || '');
+      setCardNumber(data.cardNumber || '');
+      setExpiryDate(data.expiryDate || '');
+      setCvv(data.cvv || '');
+      setCardHolder(data.cardHolder || '');
     }
+  }, []);
 
-    if (paymentMethod === 'credit' || paymentMethod === 'debit') {
-      if (!cardNumber || !expiryDate || !cvv || !cardHolder) {
-        alert('Por favor, preencha todos os dados do cartão.');
-        return;
-      }
-    }
-
-    console.log('Pedido confirmado:', { cartItems, address, paymentMethod, total });
+  const handleFinalizePurchase = () => {
+    console.log('Compra finalizada');
     navigate('/tracking-symptom');
   };
-
-  const showCardFields = paymentMethod === 'credit' || paymentMethod === 'debit';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -49,129 +42,132 @@ const CartSymptom = () => {
             onClick={() => navigate(-1)}
             className="mr-4"
           >
-            ← Voltar
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
           </Button>
-          <div>
-            <h1 className="text-xl font-bold text-blue-600">Carrinho de Compras</h1>
-          </div>
+          <h1 className="text-xl font-bold text-blue-600">Carrinho</h1>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Produtos no carrinho */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-lg font-semibold mb-4">Seus produtos</h2>
-            {cartItems.map((item) => (
-              <div key={item.id} className="flex justify-between items-center py-3 border-b">
-                <div>
-                  <h3 className="font-medium">{item.name}</h3>
-                  <p className="text-sm text-gray-600">Quantidade: {item.quantity}</p>
-                </div>
-                <p className="font-semibold">R$ {(item.price * item.quantity).toFixed(2)}</p>
+        {/* Produtos no carrinho */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-4">Seus Produtos</h2>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between border-b pb-4">
+              <div>
+                <h3 className="font-medium">Ibuprofeno 600mg</h3>
+                <p className="text-gray-600">Para dor de cabeça</p>
               </div>
-            ))}
-            <div className="mt-4 pt-4 border-t">
-              <div className="flex justify-between items-center text-lg font-bold">
-                <span>Total:</span>
-                <span className="text-blue-600">R$ {total.toFixed(2)}</span>
+              <div className="text-right">
+                <p className="font-bold">R$ 12,90</p>
+                <p className="text-sm text-gray-500">Qtd: 1</p>
               </div>
             </div>
           </div>
+          <div className="mt-4 pt-4 border-t flex justify-between items-center">
+            <span className="font-semibold">Total:</span>
+            <span className="text-xl font-bold text-green-600">R$ 12,90</span>
+          </div>
+        </div>
 
-          {/* Dados de entrega e pagamento */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-lg font-semibold mb-4">Entrega e Pagamento</h2>
-            
+        {/* Endereço de entrega */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-4">Endereço de Entrega</h2>
+          <Input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Digite seu endereço completo"
+          />
+        </div>
+
+        {/* Método de pagamento */}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <div className="flex items-center mb-4">
+            <CreditCard className="w-5 h-5 text-blue-600 mr-2" />
+            <h2 className="text-lg font-semibold">Método de Pagamento</h2>
+          </div>
+          
+          <div className="space-y-4 mb-4">
+            <div className="flex space-x-4">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  value="card"
+                  checked={paymentMethod === 'card'}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="mr-2"
+                />
+                Cartão de Crédito/Débito
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  value="pix"
+                  checked={paymentMethod === 'pix'}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="mr-2"
+                />
+                PIX
+              </label>
+            </div>
+          </div>
+
+          {paymentMethod === 'card' && (
             <div className="space-y-4">
               <div>
-                <Label htmlFor="address">Endereço de entrega</Label>
+                <Label htmlFor="cardNumber">Número do cartão</Label>
                 <Input
-                  id="address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Rua, número, bairro..."
-                  required
+                  id="cardNumber"
+                  value={cardNumber}
+                  onChange={(e) => setCardNumber(e.target.value)}
+                  placeholder="1234 5678 9012 3456"
+                  maxLength={19}
                 />
               </div>
 
-              <div>
-                <Label htmlFor="payment">Método de pagamento</Label>
-                <select 
-                  id="payment"
-                  value={paymentMethod}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  required
-                >
-                  <option value="">Selecione</option>
-                  <option value="credit">Cartão de Crédito</option>
-                  <option value="debit">Cartão de Débito</option>
-                  <option value="pix">PIX</option>
-                  <option value="cash">Dinheiro</option>
-                </select>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="expiryDate">Data de validade</Label>
+                  <Input
+                    id="expiryDate"
+                    value={expiryDate}
+                    onChange={(e) => setExpiryDate(e.target.value)}
+                    placeholder="MM/AA"
+                    maxLength={5}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="cvv">CVV</Label>
+                  <Input
+                    id="cvv"
+                    value={cvv}
+                    onChange={(e) => setCvv(e.target.value)}
+                    placeholder="123"
+                    maxLength={3}
+                  />
+                </div>
               </div>
 
-              {showCardFields && (
-                <div className="space-y-4 mt-4 p-4 bg-gray-50 rounded-lg">
-                  <h3 className="font-medium text-gray-800">Dados do Cartão</h3>
-                  
-                  <div>
-                    <Label htmlFor="cardNumber">Número do cartão</Label>
-                    <Input
-                      id="cardNumber"
-                      value={cardNumber}
-                      onChange={(e) => setCardNumber(e.target.value)}
-                      placeholder="1234 5678 9012 3456"
-                      maxLength={19}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="expiryDate">Validade</Label>
-                      <Input
-                        id="expiryDate"
-                        value={expiryDate}
-                        onChange={(e) => setExpiryDate(e.target.value)}
-                        placeholder="MM/AA"
-                        maxLength={5}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input
-                        id="cvv"
-                        value={cvv}
-                        onChange={(e) => setCvv(e.target.value)}
-                        placeholder="123"
-                        maxLength={3}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="cardHolder">Nome do titular</Label>
-                    <Input
-                      id="cardHolder"
-                      value={cardHolder}
-                      onChange={(e) => setCardHolder(e.target.value)}
-                      placeholder="Nome como no cartão"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <Button 
-                onClick={handleConfirmOrder}
-                className="w-full bg-blue-600 hover:bg-blue-700 mt-6"
-                size="lg"
-              >
-                Confirmar Pedido
-              </Button>
+              <div>
+                <Label htmlFor="cardHolder">Nome do titular</Label>
+                <Input
+                  id="cardHolder"
+                  value={cardHolder}
+                  onChange={(e) => setCardHolder(e.target.value)}
+                  placeholder="Nome como no cartão"
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
+
+        <Button 
+          onClick={handleFinalizePurchase}
+          className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3"
+        >
+          Finalizar Compra
+        </Button>
       </main>
     </div>
   );

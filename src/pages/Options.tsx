@@ -1,22 +1,50 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowLeft, CreditCard, MapPin } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Options = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [address, setAddress] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [cardHolder, setCardHolder] = useState('');
 
+  // Carregar dados salvos ao montar o componente
+  useEffect(() => {
+    const savedData = localStorage.getItem('zapPharmUserData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+      setAddress(data.address || '');
+      setCardNumber(data.cardNumber || '');
+      setExpiryDate(data.expiryDate || '');
+      setCvv(data.cvv || '');
+      setCardHolder(data.cardHolder || '');
+    }
+  }, []);
+
   const handleSave = () => {
-    console.log('Dados salvos:', { address, cardNumber, expiryDate, cvv, cardHolder });
-    alert('Dados salvos com sucesso!');
+    const userData = {
+      address,
+      cardNumber,
+      expiryDate,
+      cvv,
+      cardHolder
+    };
+    
+    localStorage.setItem('zapPharmUserData', JSON.stringify(userData));
+    console.log('Dados salvos:', userData);
+    
+    toast({
+      title: "Dados salvos com sucesso!",
+      description: "Suas informações foram salvas e estarão disponíveis para próximas compras.",
+    });
   };
 
   return (

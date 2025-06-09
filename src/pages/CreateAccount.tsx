@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useNavigate } from 'react-router-dom';
+import AboutModal from '@/components/AboutModal';
 
 const CreateAccount = () => {
   const [email, setEmail] = useState('');
@@ -68,13 +69,19 @@ const CreateAccount = () => {
             Entrar com Google
           </Button>
 
-          <div className="text-center">
+          <div className="text-center space-y-2">
             <button 
               onClick={() => navigate('/login')}
               className="text-blue-600 hover:underline text-sm"
             >
               Já tem login?
             </button>
+
+            <AboutModal>
+              <button className="text-gray-500 hover:underline text-sm block w-full">
+                Sobre nós
+              </button>
+            </AboutModal>
           </div>
         </div>
       </div>

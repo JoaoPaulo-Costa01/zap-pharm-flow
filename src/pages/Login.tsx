@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useNavigate } from 'react-router-dom';
+import AboutModal from '@/components/AboutModal';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -67,6 +68,12 @@ const Login = () => {
             >
               Não tem conta? Criar uma
             </button>
+
+            <AboutModal>
+              <button className="text-gray-500 hover:underline text-sm block w-full mt-2">
+                Sobre nós
+              </button>
+            </AboutModal>
           </div>
         </div>
       </div>
