@@ -5,21 +5,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useNavigate } from 'react-router-dom';
 
-const CreateAccount = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleContinue = () => {
-    // Simulate account creation
-    navigate('/personal-data');
-  };
-
-  const handleGoogleLogin = () => {
-    // Simulate Google login
-    console.log('Google login initiated');
-    // In a real app, this would redirect to Google OAuth
-    navigate('/personal-data');
+  const handleLogin = () => {
+    console.log('Login realizado:', { email, password });
+    navigate('/dashboard');
   };
 
   return (
@@ -27,7 +20,7 @@ const CreateAccount = () => {
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-blue-600 mb-2">Zap Pharm</h1>
-          <p className="text-gray-600">Remédios na velocidade da luz ⚡</p>
+          <p className="text-gray-600">Faça login na sua conta</p>
         </div>
 
         <div className="space-y-4">
@@ -54,26 +47,25 @@ const CreateAccount = () => {
           </div>
 
           <Button 
-            onClick={handleContinue} 
+            onClick={handleLogin} 
             className="w-full bg-blue-600 hover:bg-blue-700"
           >
-            Criar Conta
+            Entrar
           </Button>
 
-          <Button 
-            variant="outline" 
-            className="w-full"
-            onClick={handleGoogleLogin}
-          >
-            Entrar com Google
-          </Button>
-
-          <div className="text-center">
+          <div className="text-center space-y-2">
             <button 
-              onClick={() => navigate('/login')}
+              onClick={() => navigate('/forgot-password')}
+              className="text-gray-500 hover:underline text-sm block w-full"
+            >
+              Esqueceu a senha?
+            </button>
+            
+            <button 
+              onClick={() => navigate('/')}
               className="text-blue-600 hover:underline text-sm"
             >
-              Já tem login?
+              Não tem conta? Criar uma
             </button>
           </div>
         </div>
@@ -82,4 +74,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default Login;

@@ -9,7 +9,12 @@ const CartSymptom = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
 
+  // Em uma aplicação real, estes itens viriam do contexto/estado global
   const cartItems = [
     { id: 1, name: 'Dipirona 500mg', price: 8.50, quantity: 1 }
   ];
@@ -21,9 +26,19 @@ const CartSymptom = () => {
       alert('Por favor, preencha o endereço e selecione um método de pagamento.');
       return;
     }
+
+    if (paymentMethod === 'credit' || paymentMethod === 'debit') {
+      if (!cardNumber || !expiryDate || !cvv || !cardHolder) {
+        alert('Por favor, preencha todos os dados do cartão.');
+        return;
+      }
+    }
+
     console.log('Pedido confirmado:', { cartItems, address, paymentMethod, total });
     navigate('/tracking-symptom');
   };
+
+  const showCardFields = paymentMethod === 'credit' || paymentMethod === 'debit';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -96,6 +111,56 @@ const CartSymptom = () => {
                   <option value="cash">Dinheiro</option>
                 </select>
               </div>
+
+              {showCardFields && (
+                <div className="space-y-4 mt-4 p-4 bg-gray-50 rounded-lg">
+                  <h3 className="font-medium text-gray-800">Dados do Cartão</h3>
+                  
+                  <div>
+                    <Label htmlFor="cardNumber">Número do cartão</Label>
+                    <Input
+                      id="cardNumber"
+                      value={cardNumber}
+                      onChange={(e) => setCardNumber(e.target.value)}
+                      placeholder="1234 5678 9012 3456"
+                      maxLength={19}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="expiryDate">Validade</Label>
+                      <Input
+                        id="expiryDate"
+                        value={expiryDate}
+                        onChange={(e) => setExpiryDate(e.target.value)}
+                        placeholder="MM/AA"
+                        maxLength={5}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="cvv">CVV</Label>
+                      <Input
+                        id="cvv"
+                        value={cvv}
+                        onChange={(e) => setCvv(e.target.value)}
+                        placeholder="123"
+                        maxLength={3}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="cardHolder">Nome do titular</Label>
+                    <Input
+                      id="cardHolder"
+                      value={cardHolder}
+                      onChange={(e) => setCardHolder(e.target.value)}
+                      placeholder="Nome como no cartão"
+                    />
+                  </div>
+                </div>
+              )}
 
               <Button 
                 onClick={handleConfirmOrder}
