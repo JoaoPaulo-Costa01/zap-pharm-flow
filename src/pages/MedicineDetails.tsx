@@ -7,13 +7,14 @@ const MedicineDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const medicine = {
-    id: id,
-    name: 'Dipirona 500mg',
-    price: 'R$ 8,50',
-    description: 'Analgésico e antitérmico indicado para dores e febre. Contém 20 comprimidos.',
-    image: '💊'
-  };
+  const medicines = [
+    { id: 1, name: 'Dipirona 500mg', price: 'R$ 8,50', image: '💊', description: 'Analgésico e antitérmico indicado para dores e febre. Contém 20 comprimidos.' },
+    { id: 2, name: 'Paracetamol 750mg', price: 'R$ 12,90', image: '💊', description: 'Analgésico e antitérmico de ação prolongada. Contém 30 comprimidos.' },
+    { id: 3, name: 'Aspirina 500mg', price: 'R$ 9,80', image: '💊', description: 'Ácido acetilsalicílico para dores de cabeça e febre. Contém 30 comprimidos.' },
+    { id: 4, name: 'Ibuprofeno 600mg', price: 'R$ 15,30', image: '💊', description: 'Anti-inflamatório não esteroidal para dores e inflamações. Contém 20 comprimidos.' }
+  ];
+
+  const medicine = medicines.find(m => m.id === parseInt(id || '1')) || medicines[0];
 
   const handleAddToCart = () => {
     console.log('Remédio adicionado ao carrinho:', medicine);

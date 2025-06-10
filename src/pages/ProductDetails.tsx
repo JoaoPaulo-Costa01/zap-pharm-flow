@@ -7,13 +7,16 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const product = {
-    id: id,
-    name: 'Dipirona 500mg',
-    price: 'R$ 8,50',
-    description: 'Analgésico e antitérmico indicado para dores e febre. Contém 20 comprimidos.',
-    image: '💊'
-  };
+  const products = [
+    { id: 1, name: 'Dipirona 500mg', price: 'R$ 8,50', image: '💊', description: 'Analgésico e antitérmico indicado para dores e febre. Contém 20 comprimidos.' },
+    { id: 2, name: 'Paracetamol 750mg', price: 'R$ 12,90', image: '💊', description: 'Analgésico e antitérmico de ação prolongada. Contém 30 comprimidos.' },
+    { id: 3, name: 'Ibuprofeno 600mg', price: 'R$ 15,30', image: '💊', description: 'Anti-inflamatório não esteroidal para dores e inflamações. Contém 20 comprimidos.' },
+    { id: 4, name: 'Aspirina 500mg', price: 'R$ 9,80', image: '💊', description: 'Ácido acetilsalicílico para dores de cabeça e febre. Contém 30 comprimidos.' },
+    { id: 5, name: 'Dorflex', price: 'R$ 18,70', image: '💊', description: 'Relaxante muscular para dores nas costas e tensão. Contém 36 comprimidos.' },
+    { id: 6, name: 'Buscopan', price: 'R$ 22,40', image: '💊', description: 'Antiespasmódico para cólicas e dores abdominais. Contém 20 comprimidos.' }
+  ];
+
+  const product = products.find(p => p.id === parseInt(id || '1')) || products[0];
 
   const handleAddToCart = () => {
     console.log('Produto adicionado ao carrinho:', product);
