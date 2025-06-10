@@ -14,6 +14,7 @@ const CartSymptom = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [cardHolder, setCardHolder] = useState('');
+  const [cartItem, setCartItem] = useState(null);
 
   // Carregar dados salvos
   useEffect(() => {
@@ -26,12 +27,27 @@ const CartSymptom = () => {
       setCvv(data.cvv || '');
       setCardHolder(data.cardHolder || '');
     }
+
+    // Carregar item do carrinho
+    const savedCartItem = localStorage.getItem('symptomCartItem');
+    if (savedCartItem) {
+      setCartItem(JSON.parse(savedCartItem));
+    }
   }, []);
 
   const handleFinalizePurchase = () => {
     console.log('Compra finalizada');
     navigate('/tracking-symptom');
   };
+
+  // Produto padrão caso não haja item no carrinho
+  const defaultItem = {
+    name: 'Ibuprofeno 600mg',
+    price: 'R$ 12,90',
+    description: 'Para dor de cabeça'
+  };
+
+  const displayItem = cartItem || defaultItem;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -56,18 +72,18 @@ const CartSymptom = () => {
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b pb-4">
               <div>
-                <h3 className="font-medium">Ibuprofeno 600mg</h3>
-                <p className="text-gray-600">Para dor de cabeça</p>
+                <h3 className="font-medium">{displayItem.name}</h3>
+                <p className="text-gray-600">{displayItem.description || 'Para dor de cabeça'}</p>
               </div>
               <div className="text-right">
-                <p className="font-bold">R$ 12,90</p>
-                <p className="text-sm text-gray-500">Qtd: 1</p>
+                <p className="font-bold">{displayItem.price}</p>
+                <p className="text-sm text-gray-500">Qtd: {displayItem.quantity || 1}</p>
               </div>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t flex justify-between items-center">
             <span className="font-semibold">Total:</span>
-            <span className="text-xl font-bold text-green-600">R$ 12,90</span>
+            <span className="text-xl font-bold text-green-600">{displayItem.price}</span>
           </div>
         </div>
 

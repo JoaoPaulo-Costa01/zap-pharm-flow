@@ -18,6 +18,15 @@ const MedicineDetails = () => {
 
   const handleAddToCart = () => {
     console.log('Remédio adicionado ao carrinho:', medicine);
+    
+    // Salvar o produto no localStorage para o carrinho de sintomas
+    const cartItem = {
+      ...medicine,
+      quantity: 1,
+      addedAt: new Date().toISOString()
+    };
+    localStorage.setItem('symptomCartItem', JSON.stringify(cartItem));
+    
     navigate('/cart-symptom');
   };
 

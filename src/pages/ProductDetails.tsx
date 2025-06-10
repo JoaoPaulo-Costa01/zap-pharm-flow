@@ -20,6 +20,15 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     console.log('Produto adicionado ao carrinho:', product);
+    
+    // Salvar o produto no localStorage para o carrinho regular
+    const cartItem = {
+      ...product,
+      quantity: 1,
+      addedAt: new Date().toISOString()
+    };
+    localStorage.setItem('cartItem', JSON.stringify(cartItem));
+    
     navigate('/cart');
   };
 
