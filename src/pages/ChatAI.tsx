@@ -16,7 +16,7 @@ const ChatAI = () => {
   const [messages, setMessages] = useState<Message[]>([
     { 
       id: 1, 
-      text: "Olá! Sou sua assistente farmacêutica powered by Gemini AI. Para começar, insira sua API key do Google AI Studio. Depois posso ajudar com informações sobre medicamentos e sintomas!", 
+      text: "Olá! Sou sua assistente farmacêutica do Zap Pharm, powered by Google AI. Posso te ajudar com informações sobre medicamentos de venda livre disponíveis em nosso catálogo.\n\n⚠️ IMPORTANTE: Não realizo diagnósticos médicos nem prescrevo medicamentos. Sempre consulte um médico ou farmacêutico para orientações personalizadas.\n\nPara começar, insira sua API key do Google AI Studio abaixo.", 
       sender: 'ai',
       timestamp: new Date()
     }
@@ -26,8 +26,15 @@ const ChatAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Medicamentos do catálogo para referência
+  const catalogMedicines = [
+    { name: 'Dipirona 500mg', price: 'R$ 8,50', indication: 'dor e febre' },
+    { name: 'Paracetamol 750mg', price: 'R$ 12,90', indication: 'dor de cabeça e febre' },
+    { name: 'Aspirina 500mg', price: 'R$ 9,80', indication: 'dor de cabeça' },
+    { name: 'Ibuprofeno 600mg', price: 'R$ 15,30', indication: 'dor e inflamação' }
+  ];
+
   useEffect(() => {
-    // Carregar API key salva
     const savedApiKey = localStorage.getItem('gemini_api_key');
     if (savedApiKey) {
       setApiKey(savedApiKey);
@@ -39,12 +46,41 @@ const ChatAI = () => {
       localStorage.setItem('gemini_api_key', apiKey);
       const newMessage: Message = {
         id: messages.length + 1,
-        text: "API key salva com sucesso! Agora posso responder suas perguntas sobre medicamentos e sintomas.",
+        text: "✅ API key configurada com sucesso! Agora posso te ajudar com informações sobre medicamentos. Como posso te auxiliar hoje?",
         sender: 'ai',
         timestamp: new Date()
       };
       setMessages(prev => [...prev, newMessage]);
     }
+  };
+
+  const createSystemPrompt = () => {
+    const medicineList = catalogMedicines.map(med => 
+      `${med.name} (${med.price}) - indicado para ${med.indication}`
+    ).join('\n');
+
+    return `Você é uma assistente farmacêutica virtual do Zap Pharm, especializada em fornecer informações educativas sobre medicamentos de venda livre.
+
+REGRAS IMPORTANTES - SEMPRE SEGUIR:
+1. 🚫 NUNCA faça diagnósticos médicos
+2. 🚫 NUNCA prescreva medicamentos
+3. 🚫 NUNCA substitua consulta médica
+4. ✅ SEMPRE recomende consultar médico/farmacêutico
+5. ✅ Seja educativa e informativa
+6. ✅ Use linguagem clara e acessível
+7. ✅ Mencione medicamentos do nosso catálogo quando relevante
+
+CATÁLOGO ZAP PHARM:
+${medicineList}
+
+MODELO DE RESPOSTA:
+- Sempre inicie reconhecendo a preocupação do usuário
+- Deixe claro que não pode dar diagnóstico
+- Forneça informações educativas gerais
+- Mencione opções disponíveis no catálogo (sem prescrever)
+- Sempre termine recomendando consulta profissional
+
+EXEMPLO: "Entendo sua preocupação. Não posso indicar qual medicamento usar, pois isso exige orientação médica. Posso informar que em nosso catálogo temos opções como [medicamento] que são comumente usadas para [sintoma]. Consulte sempre um médico ou farmacêutico para a escolha adequada."`;
   };
 
   const callGeminiAPI = async (message: string): Promise<string> => {
@@ -57,22 +93,21 @@ const ChatAI = () => {
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `Você é uma assistente farmacêutica virtual especializada em medicamentos sem prescrição. 
-                     Responda de forma profissional e educativa sobre: ${message}
-                     
-                     IMPORTANTE: 
-                     - Sempre recomende consultar um médico ou farmacêutico
-                     - Não prescreva medicamentos controlados
-                     - Seja claro sobre limitações e contraindicações
-                     - Mantenha as respostas concisas e úteis`
+              text: `${createSystemPrompt()}\n\nPergunta do usuário: ${message}`
             }]
           }],
           generationConfig: {
-            temperature: 0.7,
-            topK: 40,
-            topP: 0.95,
+            temperature: 0.3,
+            topK: 20,
+            topP: 0.8,
             maxOutputTokens: 1024,
           },
+          safetySettings: [
+            {
+              category: "HARM_CATEGORY_MEDICAL",
+              threshold: "BLOCK_NONE"
+            }
+          ]
         }),
       });
 
@@ -81,7 +116,7 @@ const ChatAI = () => {
       }
 
       const data = await response.json();
-      return data.candidates[0]?.content?.parts[0]?.text || 'Desculpe, não consegui processar sua pergunta.';
+      return data.candidates[0]?.content?.parts[0]?.text || 'Desculpe, não consegui processar sua pergunta no momento.';
     } catch (error) {
       console.error('Erro ao chamar Gemini API:', error);
       return 'Erro ao conectar com a IA. Verifique sua API key e conexão com a internet.';
@@ -92,7 +127,7 @@ const ChatAI = () => {
     if (!currentMessage.trim()) return;
     
     if (!apiKey.trim()) {
-      alert('Por favor, insira sua API key do Gemini primeiro!');
+      alert('Por favor, configure sua API key do Google AI Studio primeiro!');
       return;
     }
 
@@ -143,14 +178,14 @@ const ChatAI = () => {
             ← Voltar
           </Button>
           <div>
-            <h1 className="text-xl font-bold text-blue-600">Chat com IA - Gemini</h1>
-            <p className="text-gray-600 text-sm">Assistente farmacêutica powered by Google AI</p>
+            <h1 className="text-xl font-bold text-blue-600">Assistente Farmacêutica IA</h1>
+            <p className="text-gray-600 text-sm">Informações educativas sobre medicamentos</p>
           </div>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto p-4">
-        {/* Seção para API Key */}
+        {/* Configuração da API Key */}
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4">
           <div className="flex gap-2 items-end">
             <div className="flex-1">
@@ -170,12 +205,26 @@ const ChatAI = () => {
               className="bg-blue-600 hover:bg-blue-700"
               disabled={!apiKey.trim()}
             >
-              Salvar
+              Configurar
             </Button>
           </div>
           <p className="text-xs text-gray-500 mt-1">
-            Obtenha sua API key gratuita em: <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Google AI Studio</a>
+            Obtenha sua API key gratuita em: 
+            <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">
+              Google AI Studio
+            </a>
           </p>
+        </div>
+
+        {/* Aviso Legal */}
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+          <div className="flex items-start">
+            <span className="text-yellow-600 text-xl mr-2">⚠️</span>
+            <div className="text-sm text-yellow-800">
+              <strong>Aviso Legal:</strong> Esta IA fornece apenas informações educativas sobre medicamentos de venda livre. 
+              Não substitui consulta médica ou farmacêutica. Em conformidade com LGPD e normas da Anvisa.
+            </div>
+          </div>
         </div>
 
         {/* Chat */}
@@ -190,7 +239,7 @@ const ChatAI = () => {
                   className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                     message.sender === 'user' 
                       ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-200 text-gray-800'
+                      : 'bg-gray-100 text-gray-800'
                   }`}
                 >
                   <div className="whitespace-pre-wrap">{message.text}</div>
@@ -202,10 +251,10 @@ const ChatAI = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start mb-4">
-                <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg">
+                <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
                   <div className="flex items-center gap-2">
                     <div className="animate-spin h-4 w-4 border-2 border-gray-600 border-t-transparent rounded-full"></div>
-                    Pensando...
+                    Processando sua pergunta...
                   </div>
                 </div>
               </div>
@@ -216,7 +265,7 @@ const ChatAI = () => {
             <Textarea
               value={currentMessage}
               onChange={(e) => setCurrentMessage(e.target.value)}
-              placeholder="Descreva seus sintomas ou pergunte sobre medicamentos..."
+              placeholder="Ex: Que opções tenho para dor de cabeça?"
               onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && (e.preventDefault(), handleSendMessage())}
               className="resize-none"
               rows={2}
