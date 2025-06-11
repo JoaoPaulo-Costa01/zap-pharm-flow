@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
+import GoogleAuth from "./pages/GoogleAuth";
 import PersonalData from "./pages/PersonalData";
 import Dashboard from "./pages/Dashboard";
 import Options from "./pages/Options";
@@ -34,6 +35,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<CreateAccount />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/google-auth" element={<GoogleAuth />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/personal-data" element={<PersonalData />} />
           <Route path="/dashboard" element={<Dashboard />} />
