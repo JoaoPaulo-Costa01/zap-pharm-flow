@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,6 +22,7 @@ import CartSymptom from "./pages/CartSymptom";
 import TrackingSymptom from "./pages/TrackingSymptom";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/ForgotPassword";
+import PharmaceuticalAssistant from "./pages/PharmaceuticalAssistant";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +41,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/options" element={<Options />} />
           <Route path="/chat-ai" element={<ChatAI />} />
+          <Route path="/pharmaceutical-assistant" element={<PharmaceuticalAssistant />} />
           <Route path="/pharmacies" element={<Pharmacies />} />
           <Route path="/pharmacy/:id" element={<PharmacyProducts />} />
           <Route path="/product/:id" element={<ProductDetails />} />
