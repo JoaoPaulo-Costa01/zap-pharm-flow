@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -5,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
-import GoogleAuth from "./pages/GoogleAuth";
 import PersonalData from "./pages/PersonalData";
 import Dashboard from "./pages/Dashboard";
 import Options from "./pages/Options";
@@ -22,7 +22,6 @@ import CartSymptom from "./pages/CartSymptom";
 import TrackingSymptom from "./pages/TrackingSymptom";
 import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/ForgotPassword";
-import PharmaceuticalAssistant from "./pages/PharmaceuticalAssistant";
 
 const queryClient = new QueryClient();
 
@@ -35,13 +34,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<CreateAccount />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/google-auth" element={<GoogleAuth />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/personal-data" element={<PersonalData />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/options" element={<Options />} />
           <Route path="/chat-ai" element={<ChatAI />} />
-          <Route path="/pharmaceutical-assistant" element={<PharmaceuticalAssistant />} />
           <Route path="/pharmacies" element={<Pharmacies />} />
           <Route path="/pharmacy/:id" element={<PharmacyProducts />} />
           <Route path="/product/:id" element={<ProductDetails />} />
