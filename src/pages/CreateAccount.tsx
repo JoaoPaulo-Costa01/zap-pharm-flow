@@ -17,10 +17,8 @@ const CreateAccount = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Simulate Google login
-    console.log('Google login initiated');
-    // In a real app, this would redirect to Google OAuth
-    navigate('/personal-data');
+    // Navigate to Google auth with state indicating we came from create account
+    navigate('/google-auth', { state: { from: 'create-account' } });
   };
 
   return (
