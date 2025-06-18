@@ -1,10 +1,7 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-// A importação do 'useNavigate' é a causa do erro principal e foi removida do uso ativo.
-// Para evitar quebrar a plataforma, a importação pode ser mantida mas seu uso é desativado.
 import { useNavigate } from 'react-router-dom';
 
 interface Message {
@@ -20,7 +17,6 @@ const ChatAI = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // A inicialização do navigate é mantida para não quebrar a estrutura, mas seu uso no botão foi removido.
   const navigate = useNavigate();
 
   const handleConfigureApiKey = () => {
@@ -105,15 +101,13 @@ const ChatAI = () => {
     }
   };
 
-  // --- NENHUMA ALTERAÇÃO NA APARÊNCIA ABAIXO ---
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <header className="bg-white shadow-sm p-4">
         <div className="max-w-4xl mx-auto flex items-center">
           <Button 
             variant="ghost" 
-            // O onClick foi removido para evitar o erro, pois não há um Router.
-            // onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/dashboard')}
             className="mr-4"
           >
             ← Voltar
@@ -155,7 +149,7 @@ const ChatAI = () => {
                 className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div 
-                  className={`max-w-xs lg:max-md px-4 py-2 rounded-lg ${
+                  className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                     message.sender === 'user' 
                       ? 'bg-blue-600 text-white' 
                       : 'bg-gray-100 text-gray-800'
