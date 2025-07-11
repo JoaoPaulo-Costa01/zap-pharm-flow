@@ -29,21 +29,19 @@ https://zap-pharm-flow.lovable.app/
 
 ## Algumas telas do app:
 
-<img width="769" height="887" alt="image" src="https://github.com/user-attachments/assets/10c67e6b-6748-42c4-88b0-057115acf893" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/9f19a13b-c799-4ca2-802b-febe8c7d3728" />
 
-<img width="765" height="891" alt="image" src="https://github.com/user-attachments/assets/9153c22a-1299-4f00-bbf4-92b366f7c095" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/3316dd83-ccec-4b5e-b251-3c608010286f" />
 
-<img width="758" height="897" alt="image" src="https://github.com/user-attachments/assets/9273d8db-bb42-42af-861d-9cace0066a9f" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/b5df6f29-e39d-4d58-af04-213ff1d8205d" />
 
-<img width="751" height="889" alt="image" src="https://github.com/user-attachments/assets/b095fe93-52dc-4b43-a027-226b089c9aea" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/188de0e7-aa13-4921-8d4f-bb27929fdde7" />
 
-<img width="758" height="895" alt="image" src="https://github.com/user-attachments/assets/214f53c1-e21a-48a7-9d66-8de9ebecf5d5" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/960b5233-4a27-4dc9-a23a-eba3ac03769f" />
 
-<img width="743" height="890" alt="image" src="https://github.com/user-attachments/assets/5d62d52b-acb0-4fce-8334-e96baeb12ed5" />
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/cdc20c12-149d-4367-97df-4c027cb50bc6" />
 
-
-
-
+<img width="400" height="900" alt="image" src="https://github.com/user-attachments/assets/c797df65-148d-47de-8973-6458e75f2cb3" />
 
 
 
