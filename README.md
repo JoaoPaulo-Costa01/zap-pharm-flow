@@ -1,58 +1,20 @@
-# Welcome to your Lovable project
+# Zap Pharm
 
-## Project info
+## Visão Geral do Projeto:
 
-**URL**: https://lovable.dev/projects/bfc1d345-9c8c-44c0-9497-275716ca7b33
+O Zap Pharm é um protótipo de aplicativo mobile, desenvolvido como projeto acadêmico, utilizado o lovable para desenvolver o aplicativo, com foco na entrega rápida e eficiente de medicamentos e produtos farmacêuticos, conectando clientes a farmácias locais. O objetivo é facilitar o acesso à saúde, oferecendo conveniência, agilidade e suporte inteligente, especialmente para idosos e pessoas com dificuldades tecnológicas.
 
-## How can I edit this code?
+## A Ideia do App:
 
-There are several ways of editing your application.
+A ideia central do Zap Pharm é resolver problemas comuns enfrentados por clientes, farmácias e entregadores. Para os clientes, buscamos eliminar a dificuldade em encontrar medicamentos específicos, o tempo e esforço de deslocamento até a farmácia, a falta de informações básicas sobre medicamentos e a barreira tecnológica. Para as farmácias, oferecemos uma forma de alcançar uma base maior de clientes e otimizar seus processos de entrega. Para os entregadores, proporcionamos oportunidades de trabalho flexíveis com um sistema de pagamento eficiente.
 
-**Use Lovable**
+## Principais diferenciais do aplicativo: 
+Chat com Inteligência Artificial (IA) para exibir os nomes de medicamentos mais usados para tal necessidade, fornecendo informações básicas e alertando sobre alergias (sem realizar prescrições).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bfc1d345-9c8c-44c0-9497-275716ca7b33) and start prompting.
+Interface Simplificada com opções de layout projetadas para idosos e pessoas com dificuldades tecnológicas, com botões grandes, texto legível e navegação intuitiva. Além disso, o Zap Pharm é otimizado exclusivamente para as necessidades do setor farmacêutico, diferenciando-se de aplicativos de entrega generalistas.
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+## Tecnologias que o Lovable utilizou:
 
 - Vite
 - TypeScript
@@ -60,14 +22,29 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como utilizar o aplicaitvo?
 
-Simply open [Lovable](https://lovable.dev/projects/bfc1d345-9c8c-44c0-9497-275716ca7b33) and click on Share -> Publish.
+Apenas entre nesse link:
+https://zap-pharm-flow.lovable.app/
 
-## Can I connect a custom domain to my Lovable project?
+## Algumas telas do app:
 
-Yes, you can!
+<img width="769" height="887" alt="image" src="https://github.com/user-attachments/assets/10c67e6b-6748-42c4-88b0-057115acf893" />
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+<img width="765" height="891" alt="image" src="https://github.com/user-attachments/assets/9153c22a-1299-4f00-bbf4-92b366f7c095" />
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+<img width="758" height="897" alt="image" src="https://github.com/user-attachments/assets/9273d8db-bb42-42af-861d-9cace0066a9f" />
+
+<img width="751" height="889" alt="image" src="https://github.com/user-attachments/assets/b095fe93-52dc-4b43-a027-226b089c9aea" />
+
+<img width="758" height="895" alt="image" src="https://github.com/user-attachments/assets/214f53c1-e21a-48a7-9d66-8de9ebecf5d5" />
+
+<img width="743" height="890" alt="image" src="https://github.com/user-attachments/assets/5d62d52b-acb0-4fce-8334-e96baeb12ed5" />
+
+
+
+
+
+
+
+
