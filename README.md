@@ -2,7 +2,7 @@
 
 ## Visão Geral do Projeto:
 
-O Zap Pharm é um protótipo de aplicativo mobile, desenvolvido como projeto acadêmico, utilizado o lovable para desenvolver o aplicativo, com foco na entrega rápida e eficiente de medicamentos e produtos farmacêuticos, conectando clientes a farmácias locais. O objetivo é facilitar o acesso à saúde, oferecendo conveniência, agilidade e suporte inteligente, especialmente para idosos e pessoas com dificuldades tecnológicas.
+O Zap Pharm é um protótipo de aplicativo mobile, desenvolvido como projeto acadêmico. Utilizei o Lovable no desenvolvimento, e eu mesmo realizei o levantamento de requisitos. O aplicativo tem como foco a entrega rápida e eficiente de medicamentos e produtos farmacêuticos, conectando clientes a farmácias locais. Tem o objetivo de facilitar o acesso à saúde, oferecendo conveniência, agilidade e suporte inteligente, especialmente para idosos e pessoas com dificuldades tecnológicas.
 
 ## A Ideia do App:
 
